@@ -11,6 +11,3 @@ USER app
 EXPOSE 8080
 WORKDIR /app
 ENTRYPOINT /app/invoicer
-
-
-
