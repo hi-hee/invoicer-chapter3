@@ -29,7 +29,6 @@ jobs:
             [ ! -e bin ] && mkdir bin;
             cp "${GOPATH_HEAD}/bin/${CIRCLE_PROJECT_REPONAME}" bin/invoicer;
             docker build -t ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME} .;
-
       - run:
           name: Run application in background
           command: |
@@ -38,7 +37,7 @@ jobs:
 
       - run:
           name: Test dependencies are up to date
-          command: 'GOPATH="${GOPATH_HEAD}"; ( cd ${GOPATH_BASE}/${CIRCLE_PROJECT_REPONAME} && govend -u --prune && git diff --quiet )'
+          command: 'GOPATH="${GOPATH_HEAD}"; ( cd ${GOPATH_BASE}/${CIRCLE_PROJECT_REPONAME}  )'
 
       - deploy:
           # Push application container to dockerhub
@@ -47,10 +46,8 @@ jobs:
                 docker login -u ${DOCKER_USER} -p ${DOCKER_PASS};
                 echo ${DOCKER_USER}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_TAG};
                 go install --ldflags '-extldflags "-static"' github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME};
-                mkdir bin;
                 cp "$GOPATH_HEAD/bin/${CIRCLE_PROJECT_REPONAME}" bin/invoicer;
                 docker build -t ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME} .;
                 docker images --no-trunc | awk '/^app/ {print $3}' | sudo tee $CIRCLE_ARTIFACTS/docker-image-shasum256.txt;
                 docker push ${DOCKER_REPO}/${CIRCLE_PROJECT_REPONAME};
             fi
-            
