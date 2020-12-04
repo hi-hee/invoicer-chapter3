@@ -17,7 +17,7 @@
     {
         "Namespace": "aws:elasticbeanstalk:application:environment", 
         "OptionName": "INVOICER_POSTGRES_PASSWORD", 
-        "Value": "S0m3th1ngr4nd0m"
+        "Value": "triopoint1"
     }, 
     {
         "Namespace": "aws:elasticbeanstalk:application:environment", 
