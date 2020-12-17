@@ -43,14 +43,11 @@ func main() {
 		err error
 	)
 	var db *gorm.DB
-	log.Println(os.Getenv("USE_POSTGRES"))
-	log.Println(os.Getenv("USE_POSTGRES"))
-	log.Println("postgres://%s:%s@%s/%s?sslmode=%s",
-			os.Getenv("RDS_USERNAME"),
-			os.Getenv("RDS_PASSWORD"),
-			os.Getenv("RDS_HOSTNAME"),
-			os.Getenv("RDS_DB_NAME"),
-			os.Getenv("SSLMODE"))
+	var use = os.Getenv("USE_POSTGRES")
+	log.Println(use)
+	var usern = os.Getenv("RDS_USERNAME")
+	log.Println(usern)
+
 	if os.Getenv("USE_POSTGRES") != "" {
 		log.Println("Opening postgres connection")
 		db, err = gorm.Open("postgres", fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=%s",
