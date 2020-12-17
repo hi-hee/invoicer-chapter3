@@ -1,7 +1,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// Test_deployer_8_22
+// Test_deployer_5_39
 // Contributor: Julien Vehent jvehent@mozilla.com [:ulfr]
 
 
