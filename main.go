@@ -44,14 +44,9 @@ func main() {
 	)
 	var db *gorm.DB
 	
-	fmt.Sprintf("lllloooooggggggg__postgres://%s:%s@%s/%s?sslmode=%s",
-			os.Getenv("RDS_USERNAME"),
-			os.Getenv("RDS_PASSWORD"),
-			os.Getenv("RDS_HOSTNAME"),
-			os.Getenv("RDS_DB_NAME"),
-		    os.Getenv("SSLMODE"))
+	log.Printf("lllloooooggggggg, %s", os.Getenv("RDS_USERNAME"))
 
-	if os.Getenv("USE_POSTGRES") != "" {
+	if os.Getenv("SSLMODE") != "" {
 		log.Println("Opening postgres connection")
 		db, err = gorm.Open("postgres", fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=%s",
 			os.Getenv("RDS_USERNAME"),
